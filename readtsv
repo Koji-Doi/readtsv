@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+# tsv file viewer and formatter
+
 # % cat x.tsv | lesstsv -k=1,3
 # % cat x.tsv | lesstsv
 
