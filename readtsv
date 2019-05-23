@@ -6,15 +6,36 @@
 # % cat x.tsv | lesstsv
 
 use strict;
-use lib '/home/kdoi/lib/perl';
 use Getopt::Long;
 use Data::Dumper;
-use myperl;
+
+sub mysort{
+  my($data, $option)=@_;
+  (defined $option) or return($data);
+  my @data1=sort {$a->[1] cmp $b->[1]} @$data;
+  return(\@data1);
+}
+
+# chomp adaptable for both win and linux text files
+sub mychomp{
+  my(@xx)=@_; # $x: reference of scalar
+  if(scalar @xx == 0){
+    s/(\x0a|\x0d)//g;
+  }else{
+    foreach my $x_ref (@xx){
+      if(defined $x_ref){
+        $$x_ref=~s/(\x0a|\x0d)//g;
+        return($x_ref);
+      }else{
+        s/(\x0a|\x0d)//g;
+      }
+    }
+  }
+}
 
 my($format,$opt_n,$opt_k,$opt_f,$opt_m,$opt_s,$opt_v,$opt_t,$opt_ifs,$opt_g,$opt_html,$opt_htmlopt, $opt_sort);
 $opt_s="|"; # default field separator
 my($f)=GetOptions(
-  'f=s'       => \$opt_f,      # -f xxx       : file format(xxx=triple,class,property,instance)
   'n!'        => \$opt_n,      # -n           : display the number of field, line No., file name
   'k=s'       => \$opt_k,      # -k a,b,c,... : display only designated fields
   'multiple!' => \$opt_m,      # -multi       : display in muliple line format: one column -> one line
@@ -33,23 +54,6 @@ my $ifs=(defined $opt_ifs)?$opt_ifs:"\t"; #input field separator
 
 #my $formatfile='/home/kdoi/work/omixfiles-utf8.txt';
 my(%format,$type,$n);
-
-if(defined $opt_f){
-#  open(my $fhi, '<', $formatfile) or die "$formatfile missed";
-#  while(<DATA>){
-#    s/(\x0a|\x0d)//g;
-#    if(/>(.*)/){
-#      $type=$1;
-#    }elsif(/^(\d+)/){
-#      $n=$1;
-#    }else{
-#      push(@{$format{$type}[$n]},$_);
-#    }
-#  }
-
-}
-#print Dumper($format{'triple'}[1]),".\n";
-#exit;
 
 my(@outf)=split(",", $opt_k);
 my @outf_name;
@@ -139,9 +143,3 @@ if(defined $opt_html){
   print "</table>\n</body></html>\n";
 }
 
-sub mysort{
-  my($data, $option)=@_;
-  (defined $option) or return($data);
-  my @data1=sort {$a->[1] cmp $b->[1]} @$data;
-  return(\@data1);
-}
