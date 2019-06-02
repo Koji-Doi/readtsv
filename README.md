@@ -2,11 +2,17 @@
 readtsv - easy tsv file viewer/converter
 ====
 
-TSVファイルの内容確認および簡単な整形に使えるツール
+Tab区切りテキストファイル（TSVファイル）の内容確認および簡単な整形に使えるツール
 
 A tool to check content or to convert tsv files.
 
 ## Description
+tabは「見えない」ため、その中身を確認したいときに不便を感じることがあります。そこで、とりあえずtabを"|"に置き換えて表示したいと考えて組んだワンライナーが本ツールのルーツです。
+
+```
+readtsv target.tsv
+```
+
 
 ## Demo
 
