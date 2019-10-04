@@ -9,6 +9,8 @@ A tool to check content or to convert tsv files.
 ## 概要 / Summary
 tabは「見えない」ため、tsvファイルの中身を確認したいときに不便を感じることがあります。そこで、とりあえずtabを"|"に置き換えて表示したいと考えて組んだワンライナーが本ツールのルーツです。これをスクリプトファイルに仕立て、少しづつ機能を追加しながら、気が付けば10年愛用していました。折角なのでgithubで公開しようと思い立った次第です。
 
+Since tab is "invisible", you may feel inconvenience when you want to check the contents of tsv file. The root of this tool is a one-liner to display tsv files by replacing tab with "|". I made this into a script file and added it little by little, but I used it for 10 years if I noticed it. I decided to publish it on github.
+
 今では、次のようなことができます。
 * 指定列のみを抜き出して表示
 * 複行レコードとして表示
