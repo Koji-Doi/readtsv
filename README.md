@@ -13,9 +13,9 @@ Since tab is "invisible", you may feel inconvenience when you want to check the 
 
 今では、次のようなことができます。
 * 指定列のみを抜き出して表示
-* 複行レコードとして表示
-* csvへの変換
-* html tableへの変更
+* 複行レコードとして出力
+* csvとして出力
+* html tableとして出力
 
 ## 使用例 / Example
 readtsv input.tsv
