@@ -1,5 +1,11 @@
 #!/usr/bin/perl
 
+=head1 Name
+
+readtsv - easy tsv file viewer/converter
+
+=cut
+
 # tsv file viewer and formatter
 
 # % cat x.tsv | lesstsv -k=1,3
