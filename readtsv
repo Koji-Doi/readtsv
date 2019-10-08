@@ -12,15 +12,55 @@ readtsv -k 1,2 input.tsv
 
 readtsv -m input.tsv
 
-readtsv --html input.tsv
+readtsv -html input.tsv
 
-=head2 Examples:
+readtsv -s ',' input.tsv > output.csv
+
+=head1 OPTIONS
+
+=over 1
+
+=item -n           : display the number of field, line No., file name
+
+=item -k a,b,c,... : display only designated fields
+
+=item -multi       : display in muliple line format: one column -> one line
+
+=item -m           : same as -multi
+
+=item -s ','       : specify field separator on output
+
+=item -ifs ','     : specify field separator on input
+
+=item -t           : treat first line as field names
+
+=item -v           : display field names when -t is set
+
+=item -g           : postpone that the input is from grep of multiple files
+
+=item -html        : output simple html text
+
+=item -htmlopt 1   : html table options
+
+=item -sort 1n2dn  : sort option
+
+=item -help        : show this help
+
+=item -h           : same as -help
+
+=back
 
 =cut
 
 use strict;
+use FindBin;
+use Pod::Usage;
 use Getopt::Long;
 use Data::Dumper;
+
+sub help{
+  print pod2usage(-verbose => 2, -input => $FindBin::Bin . "/" . $FindBin::Script);
+}
 
 sub mysort{
   my($data, $option)=@_;
@@ -46,7 +86,7 @@ sub mychomp{
   }
 }
 
-my($format,$opt_n,$opt_k,$opt_f,$opt_m,$opt_s,$opt_v,$opt_t,$opt_ifs,$opt_g,$opt_html,$opt_htmlopt, $opt_sort);
+my($format, $opt_n, $opt_k, $opt_f, $opt_m, $opt_s, $opt_v, $opt_t, $opt_ifs, $opt_g, $opt_html, $opt_htmlopt, $opt_sort, $opt_h);
 $opt_s="|"; # default field separator
 my($f)=GetOptions(
   'n!'        => \$opt_n,      # -n           : display the number of field, line No., file name
@@ -56,16 +96,19 @@ my($f)=GetOptions(
   's=s'       => \$opt_s,      # -s ','       : specify field separator on output
   'ifs=s'     => \$opt_ifs,    # -ifs ','     : specify field separator on input
   't!'        => \$opt_t,      # -t           : treat first line as field names
-  'v!'        => \$opt_v,      # -v           : display field names when -f is set
+  'v!'        => \$opt_v,      # -v           : display field names when -t is set
   #'nf=s'      => \$opt_nf     # -nf 'id,name': specify names of fields to be listed
   'g!'        => \$opt_g,      # -g           : postpone that the input is from grep of multiple files
   'html!'     => \$opt_html,   # -html        : output simple html text
   'htmlopt=s' => \$opt_htmlopt,# -htmlopt 1   : html table options
-  'sort=s'    => \$opt_sort    # -sort 1n2dn  : sort option
+  'sort=s'    => \$opt_sort,    # -sort 1n2dn  : sort option
+  'h|help'    => \$opt_h
 );
+
+($opt_h) and help();
+
 my $ifs=(defined $opt_ifs)?$opt_ifs:"\t"; #input field separator
 
-#my $formatfile='/home/kdoi/work/omixfiles-utf8.txt';
 my(%format,$type,$n);
 
 my(@outf)=split(",", $opt_k);
@@ -128,11 +171,12 @@ foreach my $d (@out){
   my $k;
   (defined $opt_n) and $k=sprintf("%s$outfs%d$outfs%d$outfs", $ARGV, (scalar @f), $.);
   my $out;
-  if(my($format)=$opt_f=~/^(triple|class|instance|property|conf)$/){
+  if(defined $opt_t and defined $opt_v){
     for(my $i=0; $i<=$#f; $i++){
-      (defined $opt_v) and $f[$i]=$format{$format}[$i+1][0].": ".$f[$i];
+      $f[$i] = "$outf_name[$i]: $f[$i]";
     }
   }
+
   if(defined $opt_m){
     for(my $i=0; $i<=$#f; $i++){
       my $header=(defined $opt_t)?"$ln-$outf_name[$i]":"$ln-$i";
