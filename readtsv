@@ -1,15 +1,22 @@
 #!/usr/bin/perl
 
-=head1 Name
+=head1 NAME
 
 readtsv - easy tsv file viewer/converter
 
+=head1 SYNOPSIS
+
+readtsv input.tsv
+
+readtsv -k 1,2 input.tsv
+
+readtsv -m input.tsv
+
+readtsv --html input.tsv
+
+=head2 Examples:
+
 =cut
-
-# tsv file viewer and formatter
-
-# % cat x.tsv | lesstsv -k=1,3
-# % cat x.tsv | lesstsv
 
 use strict;
 use Getopt::Long;
