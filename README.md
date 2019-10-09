@@ -27,6 +27,14 @@ readtsv -m input.tsv
 readtsv --html input.tsv
 
 ## 解説 / Description
+
+readtsv [オプション] 入力元TSVファイル
+
+パラメータを一切指定しない場合、標準入力からデータを読み取り、タブ文字を"|"に変換して標準出力に出力します。
+
+
+### オプション / Options
+
  * -g           : postpone that the input is from grep of multiple files
  * -html        : output simple html text
  * -htmlopt 1   : html table options
