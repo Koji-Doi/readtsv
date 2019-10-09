@@ -18,6 +18,7 @@ Since tabs are "invisible", I always feel inconvenience to check the contents of
 * html tableとして出力
 
 ## 使用例 / Example
+<pre><code>
 readtsv input.tsv
 
 readtsv -k 1,2 input.tsv
@@ -25,10 +26,13 @@ readtsv -k 1,2 input.tsv
 readtsv -m input.tsv
 
 readtsv --html input.tsv
+</code></pre>
 
 ## 解説 / Description
 
+<pre><code>
 readtsv [オプション] 入力元TSVファイル
+</code></pre>
 
 パラメータを一切指定しない場合、標準入力からデータを読み取り、タブ文字を"|"に変換して標準出力に出力します。
 
