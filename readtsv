@@ -57,7 +57,6 @@ use FindBin;
 use Pod::Usage;
 use Getopt::Long;
 use Data::Dumper;
-# update test local to github
 
 sub help{
   print pod2usage(-verbose => 2, -input => $FindBin::Bin . "/" . $FindBin::Script);
