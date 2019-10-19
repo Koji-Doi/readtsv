@@ -155,6 +155,8 @@ if(defined $opt_html){
 
 my @out;
 my $ln; # line no.
+binmode STDIN,  ':utf8';
+binmode STDOUT, ':utf8';
 while(<>){
   mychomp;
   s/^#.*//;
