@@ -17,6 +17,12 @@ Since tabs are "invisible", I always feel inconvenience to check the contents of
 * csvとして出力
 * html tableとして出力
 
+Now you can do the following
+* Extract and display only the specified columns
+* Output as a multi-line record
+* Output as csv
+* Output as a html table
+
 ## 使用例 / Example
 <pre><code>
 readtsv input.tsv
@@ -36,6 +42,11 @@ readtsv [オプション] 入力元TSVファイル
 
 パラメータを一切指定しない場合、標準入力からデータを読み取り、タブ文字を"|"に変換して標準出力に出力します。
 
+<pre><code>
+readtsv [options] input.tsv
+</code></pre>
+
+If you don't specify any parameters, the data is read from the standard input, the tab character is converted to a "|", and the result is output to the standard output.
 
 ### オプション / Options
 
@@ -54,6 +65,7 @@ readtsv [オプション] 入力元TSVファイル
 
 ## インストール / Install
 本スクリプトを適当なディレクトリに置いてください。perl5がインストールされていなかったらしてください。
+Put the presented script in the appropriate directory. You must have perl5 installed.
 
 ## ライセンス / Licence
 
