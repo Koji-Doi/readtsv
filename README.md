@@ -65,6 +65,7 @@ If you don't specify any parameters, the data is read from the standard input, t
 
 ## インストール / Install
 本スクリプトを適当なディレクトリに置いてください。perl5がインストールされていなかったらしてください。
+
 Put the presented script in the appropriate directory. You must have perl5 installed.
 
 ## ライセンス / Licence
